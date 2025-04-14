@@ -5,7 +5,6 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
   @Input() title = '';
