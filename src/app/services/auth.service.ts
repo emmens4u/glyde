@@ -29,7 +29,7 @@ export class AuthService {
       await signInWithEmailAndPassword(this.firebase_auth, email, password);
     } catch (error) {
       console.error('Error signing in:', error);
-      throw error; // Rethrow the error for further handling if needed
+      throw error;
     }
   }
 
@@ -38,7 +38,7 @@ export class AuthService {
       await createUserWithEmailAndPassword(this.firebase_auth, email, password);
     } catch (error) {
       console.error('Error creating user:', error);
-      throw error; // Rethrow the error for further handling if needed
+      throw error; 
     }
   }
 
