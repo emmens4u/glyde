@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,17 +18,17 @@ export class LoginComponent {
 
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly toastr = inject(ToastrService);
 
   async onSubmit(loginForm: NgForm) {
     if (loginForm.valid) {
-      console.log('Form submitted:', loginForm.value);
       const { email, password } = loginForm.value;
       try {
         await this.authService.login(email, password);
-        console.log('User logged in successfully');
+        this.toastr.success('Login Successful', 'Welcome back!');
         this.router.navigateByUrl('/dashboard');
-      } catch (error) {
-        console.error('Login error', error);
+      } catch (error:string | any) {
+        this.toastr.error('Login Failed', 'Invalid email or password', error);
       }
     }
   }
